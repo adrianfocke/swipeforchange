@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
+// ----- Colors
+
+$background-white: #fff8f0;
+$white: #fff;
+$text-black: #1f1e1e;
+$text-black-light: lighten($text-black, 80%);
+$blue: lighten(blue, 15%);
+$secondary: $blue;
+$grey: #ccc;
+
+
+.text-black {
+  color: $text-black;
+}
+.grey {
+  color: $grey;
+}
+
+.bg-grey {
+  background-color: $text-black-light;
+}
+
+$text-font: 'Inter', sans-serif;
+$headlines: 'Space Grotesk', sans-serif;
+
+$margin: 20px;
+$margin-half: 10px;
+$margin-tiny: 4px;
+
+// ----- Standard elements styling
+
+body {
+  color: $text-black;
+  background-color: $background-white;
+}
+
+div, h1, h4, p, span, button, hr {
+  font-family: $text-font;
+  margin: 0;
+  padding: 0;
+}
+
+a, p, span {
+  color: $text-black;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-size: 1em;
+}
+
+hr {
+  background-color: $text-black-light;
+  border: none;
+  height: 1px;
+}
+
+// changeables
+
+.hidden {
+  display: none;
+}
+
+.active {
+  background-color: $text-black-light;
+}
+
+.focused {
+  color: $grey;
+}
+
+// ----- Basic elements
+
+nav {
+  justify-content: space-between;
+}
+
+.link-collection {
+  list-style: none;
+}
+
+.link-collection li {
+  margin-left: calc($margin-half / 2);
+  margin-right: calc($margin-half / 2);
+}
+
+.link-collection li:first-child,
+.link-collection li:last-child {
+  margin: 0;
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 660px;
+}
+
+.flexbox {
+  display: flex;
+}
+
+.paragraph {
+  line-height: 1.5;
+  padding-left: $margin;
+  padding-right: $margin;
+}
+
+.margin-bottom {
+  margin-bottom: $margin;
+}
+
+.margin-bottom-double {
+  margin-bottom: calc($margin * 2);
+}
+
+.margin-top {
+  margin-top: $margin;
+}
+
+.margin-horizontal {
+  margin: 0 $margin;
+}
+
+.margin-top-double {
+  margin-top: calc($margin * 2);
+}
+
+.margin-left {
+  margin-left: $margin;
+}
+
+.margin-none {
+  margin: 0;
+}
+
+.padding {
+  padding: $margin;
+}
+
+.padding-left-half {
+  padding-left: calc($margin / 2);
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-bottom {
+  padding-bottom: $margin;
+}
+
+.padding-top {
+  padding-top: $margin;
+}
+
+// ----- Components
+
+.card {
+  background-color: $white;
+  border: 1px solid $text-black-light;
+  border-radius: 5px;
+  box-shadow: 0 10px 0 $text-black-light, 0 0 $margin $grey;
+}
+
+.cardHeader {
+  border-radius: 5px;
+  height: 50vh;
+  position: relative;
+  width: 100%;
+}
+
+.cardHeader img {
+  border-top-left-radius: $margin-tiny;
+  border-top-right-radius: $margin-tiny;
+}
+
+.cardContent {
+  margin: 0;
+}
+
+.cardContentHeadline {
+  padding: $margin;
+}
+
+.cardContentHeadline span {
+  margin-left: $margin-tiny;
+}
+
+.cardContentPunchline {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.cardActionPunchline {
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+// ----- Reusables
+
+.circle {
+  border-radius: 50%;
+}
+
+.pill {
+  border: none;
+  border-radius: 25px;
+  padding: $margin-half $margin;
+  width: auto;
+}
+
+.dropdown-toggle {
+  border: 1px dashed tomato;
+  border-radius: 5px;
+  background-color: $white;
+}
+
+#search div:first-child {
+  align-items: stretch;
+  flex-direction: column;
+}
+#search div:first-child input {
+  flex: 1;
+  max-width: 100%;
+}
