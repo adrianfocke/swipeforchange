@@ -93,14 +93,23 @@ nav {
   margin-right: calc($margin-half / 2);
 }
 
-.link-collection li:first-child,
+.link-collection li:first-child {
+  margin-left: 0;
+}
+
 .link-collection li:last-child {
-  margin: 0;
+  margin-right: 0;
 }
 
 #container {
   margin: 0 auto;
   max-width: 660px;
+}
+@media screen and (orientation: portrait) {
+  #container {
+    padding-left: $margin-half;
+    padding-right: $margin-half;
+  }
 }
 
 .flexbox {
@@ -176,6 +185,11 @@ nav {
   position: relative;
   width: 100%;
 }
+@media screen and (orientation: portrait) {
+  .cardHeader {
+    height: 25vh;
+  }
+}
 
 .cardHeader img {
   border-top-left-radius: $margin-tiny;
@@ -219,7 +233,7 @@ nav {
 }
 
 .dropdown-toggle {
-  border: 1px dashed tomato;
+  border: 1px solid $text-black-light;
   border-radius: 5px;
   background-color: $white;
 }
