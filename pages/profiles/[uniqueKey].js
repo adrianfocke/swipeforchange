@@ -1,8 +1,7 @@
 import { createClient } from 'contentful'
-// import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Image from 'next/image'
 import Skeleton from '../../components/Skeleton';
-
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -11,7 +10,7 @@ const client = createClient({
 
 export const getStaticPaths = async () => {
   const res = await client.getEntries({
-    content_type: 'profile'
+    content_type: 'organisation'
   })
 
   const paths = res.items.map(item => {
@@ -30,7 +29,7 @@ export const getStaticPaths = async () => {
 export async function getStaticProps({ params }) {
 
   const { items } = await client.getEntries({
-    content_type: 'profile',
+    content_type: 'organisation',
     'fields.uniqueKey': params.uniqueKey
   })
 
@@ -54,31 +53,49 @@ const Details = ({ profile }) => {
 
   if(!profile) return <Skeleton />
 
-  const { bigImage, name, description, personalStatement, topics, longDescription } = profile.fields
+  const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   return (
-    <p>No work right now</p>
-    // <div>
-    //   <Image src={`https:${bigImage.fields.file.url}`} alt="None" width={100} height={100} />
-    //   <p>{name}</p>
-    //   <p>{description}</p>
-    //   <p>{personalStatement}</p>
-    //
-    //   // <ul>
-    //   //   {topics.map(item, id => (
-    //   //   <li key={id}>{item}</li>
-    //   //   ))}
-    //   // </ul>
-    //   //
-    //   // {topics.map(item, id => (
-    //   // <span key={id}>{item}</span>
-    //   // ))}
-    //
-    //   <div>
-    //     { documentToReactComponents(longDescription) }
-    //   </div>
-    //
-    // </div>
+
+
+    <div className="card margin-bottom-double">
+      <div className="cardHeader">
+        <Image src={`https:${firstImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
+      </div>
+
+      <div className="cardContent">
+        <div className="flexbox cardContentHeadline">
+          <h1>{ name }</h1>
+          <span>{ location }</span>
+        </div>
+        <p className="paragraph cardContentPunchline bg-grey">{ slogan }</p>
+        <p className="paragraph padding-top">{ about }</p>
+        <p className="paragraph padding-top">{ goals }</p>
+
+        <p className="paragraph padding-top">{ tags }</p>
+
+        <div className="cardHeader">
+          <Image src={`https:${fourthImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
+        </div>
+
+        <div className="paragraph padding-top">
+          { documentToReactComponents(longDescription) }
+        </div>
+
+        <p className="paragraph padding-top">{ contactName }</p>
+
+        <div className="cardHeader">
+          <Image src={`https:${contactImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
+        </div>
+
+        <p className="paragraph padding-top">{ contactStatement }</p>
+        <p className="paragraph padding-top">{ contactNumber }</p>
+        <p className="paragraph padding-top">{ contactLink }</p>
+      </div>
+
+    </div>
+
   )
+
 }
 export default Details;

@@ -7,7 +7,7 @@ export async function getStaticProps() {
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   })
-  const res = await client.getEntries({ content_type: 'profile' })
+  const res = await client.getEntries({ content_type: 'organisation' })
   return {
     props: { profiles: res.items },
     revalidate: 10

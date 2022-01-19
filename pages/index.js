@@ -8,7 +8,7 @@ export async function getStaticProps() {
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   })
-  const res = await client.getEntries({ content_type: 'profile' })
+  const res = await client.getEntries({ content_type: 'organisation' })
   return {
     props: { profiles: res.items },
     revalidate: 10
@@ -66,14 +66,14 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
   return (
     <>
       { !randomProfile ? (<p>No more profiles for now.</p>) : (
-      <Swipeable onSwipe={handleOnSwipe}>
+      // <Swipeable onSwipe={handleOnSwipe}>
         <Card
         profile={randomProfile}
         addToLikes={addToLikes}
         addToDislikes={addToDislikes}
         toggleLikeStatus={toggleLikeStatus}
         layout="tinderStyle" />
-      </Swipeable>
+      // </Swipeable>
       )}
 
     </>

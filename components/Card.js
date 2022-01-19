@@ -2,23 +2,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layout}) => {
-  const { name, headquarter, description, punchline, personalStatement, bigImage, uniqueKey } = profile.fields
+  const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   return(
     <div className="card margin-bottom-double">
 
       <div className="cardHeader">
-        <Image src={`https:${bigImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
+        <Image src={`https:${firstImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
       </div>
 
       <div className="cardContent">
         <div className="flexbox cardContentHeadline">
           <h1>{ name }</h1>
-          <span>{ headquarter }</span>
+          <span>{ location }</span>
         </div>
-        <p className="paragraph cardContentPunchline bg-grey">{ punchline }</p>
-        <p className="paragraph padding-top">{ description }</p>
-        <p className="paragraph padding-bottom padding-top">{ personalStatement }</p>
+        <p className="paragraph cardContentPunchline bg-grey">{ slogan }</p>
+        <p className="paragraph padding-top">{ about }</p>
+        <p className="paragraph padding-bottom padding-top">{ goals }</p>
       </div>
 
       <hr />
