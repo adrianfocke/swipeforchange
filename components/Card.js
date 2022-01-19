@@ -4,6 +4,8 @@ import Link from 'next/link'
 const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layout}) => {
   const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
+  console.log(tags);
+
   return(
     <div className="card margin-bottom-double">
 
@@ -19,6 +21,14 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
         <p className="paragraph cardContentPunchline bg-grey">{ slogan }</p>
         <p className="paragraph padding-top">{ about }</p>
         <p className="paragraph padding-bottom padding-top">{ goals }</p>
+
+        <span>{tags[0]}</span>
+        <span>{tags[1]}</span>
+        <span>{tags[2]}</span>
+        <span>{tags[3]}</span>
+        <span>{tags[4]}</span>
+        <span>{tags[5]}</span>
+
       </div>
 
       <hr />
@@ -26,25 +36,25 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
       <div className="cardAction">
 
         { layout === "cardStyle" ? (
-        <p className="paragraph padding-bottom padding-top">
-        <Link href={`/profiles/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-        <button className="toggle pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
-        </p>
+          <p className="paragraph padding-bottom padding-top">
+            <Link href={`/profiles/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
+            <button className="toggle pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
+          </p>
         ) : (null) }
 
         { layout === "likeStyle" ? (
-        <p className="paragraph padding-bottom padding-top">
-        <Link href={`/profiles/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-        <button className="pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Löschen</button>
-        </p>
+          <p className="paragraph padding-bottom padding-top">
+            <Link href={`/profiles/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
+            <button className="pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Löschen</button>
+          </p>
         ) : (null) }
 
         { layout === "tinderStyle" ? (
-        <p className="paragraph cardActionPunchline">
-        <button className="pill" onClick={addToDislikes} value={uniqueKey}>Nope ✗</button>
-        <Link href={`/profiles/${uniqueKey}`}><a className="margin-horizontal" alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-        <button className="pill" onClick={addToLikes} value={uniqueKey}>Like ♡</button>
-        </p>
+          <p className="paragraph cardActionPunchline">
+            <button className="pill" onClick={addToDislikes} value={uniqueKey}>Nope ✗</button>
+            <Link href={`/profiles/${uniqueKey}`}><a className="margin-horizontal" alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
+            <button className="pill" onClick={addToLikes} value={uniqueKey}>Like ♡</button>
+          </p>
         ) : (null) }
 
       </div>
