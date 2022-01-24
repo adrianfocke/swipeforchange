@@ -24,24 +24,24 @@ const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle 
 
 
 
-  const items = new Set()
-  const [isFiltered, setIsFiltered] = useState(false)
-
-
-  const grabProfiles = () => {
-    profiles.forEach((item) => {
-      items.add(item.fields);
-      console.log("Added " + item.fields.uniqueKey + ".");
-    })
-  }
-
-  useEffect(() => {
-    grabProfiles();
-  }, [])
-
-  useEffect(() => {
-    console.log(items);
-  }, [items])
+  // const items = new Set()
+  // const [isFiltered, setIsFiltered] = useState(false)
+  //
+  //
+  // const grabProfiles = () => {
+  //   profiles.forEach((item) => {
+  //     items.add(item.fields);
+  //     console.log("Added " + item.fields.uniqueKey + ".");
+  //   })
+  // }
+  //
+  // useEffect(() => {
+  //   grabProfiles();
+  // }, [])
+  //
+  // useEffect(() => {
+  //   console.log(items);
+  // }, [items])
 
 
   const [filteredProfiles, setFilteredProfiles] = useState(profiles);
