@@ -55,10 +55,9 @@ const Details = ({ profile }) => {
 
   // if(!profile) return <Skeleton />
 
-  const [shownImage, setShownImage] = useState("firstImage")
-
   const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
+  const [shownImage, setShownImage] = useState("firstImage")
   const toggleImage = () => {
     if (shownImage === "firstImage") {
       setShownImage("secondImage");
@@ -70,8 +69,6 @@ const Details = ({ profile }) => {
   }
 
   return (
-
-
     <div className="card margin-bottom-double">
 
       <div className="cardHeader mouse-pointer">
@@ -98,9 +95,9 @@ const Details = ({ profile }) => {
             <li><button className="toggle pill">{tags[1]}</button></li>
             <li><button className="toggle pill">{tags[2]}</button></li>
             {
-            // <li><button className="toggle pill">{tags[3]}</button></li>
-            // <li><button className="toggle pill">{tags[4]}</button></li>
-            // <li><button className="toggle pill">{tags[5]}</button></li>
+              // <li><button className="toggle pill">{tags[3]}</button></li>
+              // <li><button className="toggle pill">{tags[4]}</button></li>
+              // <li><button className="toggle pill">{tags[5]}</button></li>
             }
           </ul>
 
