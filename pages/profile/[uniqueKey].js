@@ -53,11 +53,11 @@ export async function getStaticProps({ params }) {
 
 const Details = ({ profile }) => {
 
-  if(!profile) return <Skeleton />
-
-  const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
+  // if(!profile) return <Skeleton />
 
   const [shownImage, setShownImage] = useState("firstImage")
+
+  const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   const toggleImage = () => {
     if (shownImage === "firstImage") {
