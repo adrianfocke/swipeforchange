@@ -88,10 +88,10 @@ const Details = ({ profile }) => {
         <p className="paragraph padding-top">{ goals }</p>
 
 
-        <p className="paragraph">
-          <h2>Unsere Themen</h2>
 
-          <ul className="flexbox link-collection margin-none padding-bottom">
+          <h2 className="paragraph">Unsere Themen</h2>
+
+          <ul className="paragraph flexbox link-collection margin-none padding-bottom">
             <li><button className="toggle pill">{tags[0]}</button></li>
             <li><button className="toggle pill">{tags[1]}</button></li>
             <li><button className="toggle pill">{tags[2]}</button></li>
@@ -101,8 +101,6 @@ const Details = ({ profile }) => {
               // <li><button className="toggle pill">{tags[5]}</button></li>
             }
           </ul>
-
-        </p>
 
         <div className="cardHeader">
           <Image src={`https:${fourthImage.fields.file.url}`} layout="fill" objectFit="cover" priority />
@@ -114,10 +112,7 @@ const Details = ({ profile }) => {
         </div>
 
 
-        <p className="paragraph padding-top">
-          <h2>Kontaktieren</h2>
-        </p>
-
+          <h2 className="paragraph padding-top">Kontaktieren</h2>
 
 
 
