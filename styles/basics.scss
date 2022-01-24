@@ -42,10 +42,19 @@ body {
   background-color: $background-white;
 }
 
-div, h1, h4, p, span, button, hr {
+div, h1, h2, p, span, button, hr {
   font-family: $text-font;
   margin: 0;
   padding: 0;
+}
+
+h1, h2 {
+  font-family: $headlines;
+}
+
+h2 {
+  font-size: 1.40em;
+  padding: $margin 0;
 }
 
 a, p, span {
@@ -62,6 +71,10 @@ hr {
   background-color: $text-black-light;
   border: none;
   height: 1px;
+}
+
+ul {
+  padding-inline-start: 0px; // wtf is that ?
 }
 
 // changeables
@@ -185,13 +198,18 @@ nav {
   position: relative;
   width: 100%;
 }
+
+.cardHeader-small {
+  height: 25vh;
+}
+
 @media screen and (orientation: portrait) {
   .cardHeader {
     height: 25vh;
   }
 }
 
-.cardHeader img {
+.cardHeader:first-child img {
   border-top-left-radius: $margin-tiny;
   border-top-right-radius: $margin-tiny;
 }
@@ -245,4 +263,17 @@ nav {
 #search div:first-child input {
   flex: 1;
   max-width: 100%;
+}
+
+
+
+
+.mouse-pointer {
+  cursor: pointer;
+}
+
+
+
+.test {
+  background: blue;
 }

@@ -1,7 +1,8 @@
 import { createClient } from 'contentful'
 import { useState, useEffect } from 'react'
 import Card from '../components/Card'
-import { Swipeable, direction } from 'react-deck-swiper';
+import Image from 'next/image'
+import Link from 'next/link'
 
 export async function getStaticProps() {
   const client = createClient({
@@ -65,15 +66,29 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
 
   return (
     <>
-      { !randomProfile ? (<p>No more profiles for now.</p>) : (
-      // <Swipeable onSwipe={handleOnSwipe}>
+      { !randomProfile ? (
+        <div className="card margin-bottom-double">
+
+          <div className="cardHeader cardHeader-small">
+            <Image src={`/../public/abstract.jpg`} layout="fill" objectFit="cover" priority />
+          </div>
+
+          <div className="cardContent">
+            <div className="flexbox cardContentHeadline">
+              <h1>Du bist am Ende angekommen!</h1>
+            </div>
+            <p className="paragraph padding-bottom">
+              <button className="toggle pill"><Link href="/likes"><a title="Navigate to likes">Zu deinen Likes</a></Link></button>
+            </p>
+          </div>
+        </div>
+      ) : (
         <Card
         profile={randomProfile}
         addToLikes={addToLikes}
         addToDislikes={addToDislikes}
         toggleLikeStatus={toggleLikeStatus}
         layout="tinderStyle" />
-      // </Swipeable>
       )}
 
     </>

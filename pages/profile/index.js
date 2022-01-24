@@ -16,6 +16,34 @@ export async function getStaticProps() {
 
 const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle }) => {
 
+  // const filteredItems = new Set();
+  //
+  // profiles.forEach((item) => {
+  //   filteredItems.add(item.fields);
+  // });
+
+
+
+  const items = new Set()
+  const [isFiltered, setIsFiltered] = useState(false)
+
+
+  const grabProfiles = () => {
+    profiles.forEach((item) => {
+      items.add(item.fields);
+      console.log("Added " + item.fields.uniqueKey + ".");
+    })
+  }
+
+  useEffect(() => {
+    grabProfiles();
+  }, [])
+
+  useEffect(() => {
+    console.log(items);
+  }, [items])
+
+
   const [filteredProfiles, setFilteredProfiles] = useState(profiles);
   const [profilesFromTextSearch, setProfilesFromTextSearch] = useState([]);
   const [profilesFromCheckboxSearches, setProfilesFromCheckboxSearches] = useState([]);
@@ -142,8 +170,6 @@ const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle 
 
       const changeThis = document.getElementById("search");
       !(changeThis.className.includes("hidden")) ? changeThis.className += " hidden" : changeThis.className = changeThis.className.replace(" hidden", "");
-
-      target.innerHTML === "Filtern ↓" ? target.innerHTML = "Filtern ↑" : target.innerHTML = "Filtern ↓";
     }
   }
 
@@ -159,30 +185,32 @@ const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle 
   return(
     <div>
 
-      <div>
-        <button className="dropdown-toggle margin-bottom padding pill" onClick={toggleVisibility}>Filtern ↓</button>
-
-        <div className="card padding hidden margin-top margin-bottom-double" id="search">
-          <div className="flexbox">
-            <p className="margin-bottom">Textsuche</p>
-            <input placeholder="Text eingeben..." onChange={handleTextSearchChange} />
-          </div>
-
-          <div className="margin-top">
-            <p className="margin-bottom">Nach Ort filtern</p>
-            <span><input type="checkbox" value="Wien" onChange={toggleCheckboxStatus}/>Wien</span><br />
-            <span><input type="checkbox" value="Österreich" onChange={toggleCheckboxStatus}/>Österreich</span><br />
-          </div>
-
-          <div className="margin-top">
-            <p className="margin-bottom">Nach Tags filtern</p>
-            <button className="pill tag" value="environment" onClick={toggleTagStatus}># environment</button>
-            <button className="pill tag margin-horizontal" value="lobau-bleibt" onClick={toggleTagStatus}># lobau-bleibt</button>
-            <button className="pill tag" value="biodiversity" onClick={toggleTagStatus}># biodiversity</button>
-          </div>
-
-        </div>
-      </div>
+      {
+      // <div>
+      //   <button className="dropdown-toggle margin-bottom padding pill" onClick={toggleVisibility}>Profile filtern</button>
+      //
+      //   <div className="card padding hidden margin-top margin-bottom-double" id="search">
+      //     <div className="flexbox">
+      //       <p className="margin-bottom">Textsuche</p>
+      //       <input placeholder="Text eingeben..." onChange={handleTextSearchChange} />
+      //     </div>
+      //
+      //     <div className="margin-top">
+      //       <p className="margin-bottom">Nach Ort filtern</p>
+      //       <span><input type="checkbox" value="Wien" onChange={toggleCheckboxStatus}/>Wien</span><br />
+      //       <span><input type="checkbox" value="Österreich" onChange={toggleCheckboxStatus}/>Österreich</span><br />
+      //     </div>
+      //
+      //     <div className="margin-top">
+      //       <p className="margin-bottom">Nach Tags filtern</p>
+      //       <button className="pill tag" value="environment" onClick={toggleTagStatus}># environment</button>
+      //       <button className="pill tag margin-horizontal" value="lobau-bleibt" onClick={toggleTagStatus}># lobau-bleibt</button>
+      //       <button className="pill tag" value="biodiversity" onClick={toggleTagStatus}># biodiversity</button>
+      //     </div>
+      //
+      //   </div>
+      // </div>
+      }
 
       { filteredProfiles.map((profile, id) => (
       <Card
