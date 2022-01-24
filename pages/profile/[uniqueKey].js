@@ -53,6 +53,8 @@ export async function getStaticProps({ params }) {
 
 const Details = ({ profile }) => {
 
+  if(!profile) return <Skeleton />
+
   const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   const [shownImage, setShownImage] = useState("firstImage")
@@ -67,7 +69,6 @@ const Details = ({ profile }) => {
     }
   }
 
-  if(!profile) return <Skeleton />
 
   return (
     <div className="card margin-bottom-double">
