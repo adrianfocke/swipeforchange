@@ -76,8 +76,8 @@ const Details = ({ profile }) => {
 
       <div className="cardHeader mouse-pointer">
         { shownImage === "firstImage" ? <Image src={`https:${firstImage.fields.file.url}`} layout="fill" objectFit="cover" priority onClick={toggleImage} /> : <p></p>}
-        { shownImage === "secondImage" ? <Image src={`https:${secondImage.fields.file.url}`} layout="fill" objectFit="cover" priority onClick={toggleImage} /> : <p></p>}
-        { shownImage === "thirdImage" ? <Image src={`https:${thirdImage.fields.file.url}`} layout="fill" objectFit="cover" priority onClick={toggleImage} /> : <p></p>}
+        { shownImage === "secondImage" ? <Image src={`https:${secondImage.fields.file.url}`} layout="fill" objectFit="cover" onClick={toggleImage} /> : <p></p>}
+        { shownImage === "thirdImage" ? <Image src={`https:${thirdImage.fields.file.url}`} layout="fill" objectFit="cover" onClick={toggleImage} /> : <p></p>}
       </div>
 
       <div className="cardContent">
