@@ -49,7 +49,7 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
   }
 
   const emptyDislikes = () => {
-    console.log("emptyDislikes");
+    setDislikes([]);
   }
 
   const handleOnSwipe = (swipeDirection) => {

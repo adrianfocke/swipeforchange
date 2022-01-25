@@ -48,7 +48,7 @@ div, h1, h2, p, span, button, hr {
   padding: 0;
 }
 
-h1, h2 {
+h1, h2, .tags {
   font-family: $headlines;
 }
 
@@ -99,6 +99,12 @@ nav {
 
 .link-collection {
   list-style: none;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.link-collection::-webkit-scrollbar {
+  display: none;
 }
 
 .link-collection li {

@@ -17,6 +17,7 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
     }
   }
 
+
   return(
     <div className="card margin-bottom-double">
 
@@ -39,19 +40,16 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
             <>
             <p className="paragraph">{ goals }</p>
 
-            <p className="paragraph">
-              <ul className="flexbox link-collection margin-none padding-top padding-bottom">
-                <li><button className="toggle pill">{tags[0]}</button></li>
-                <li><button className="toggle pill">{tags[1]}</button></li>
-                <li><button className="toggle pill">{tags[2]}</button></li>
-                {
-                // <li><button className="toggle pill">{tags[3]}</button></li>
-                // <li><button className="toggle pill">{tags[4]}</button></li>
-                // <li><button className="toggle pill">{tags[5]}</button></li>
-                }
+
+              <ul className="flexbox paragraph link-collection margin-none padding-top padding-bottom">
+                <li><button className="toggle pill tags">{tags[0]}</button></li>
+                <li><button className="toggle pill tags">{tags[1]}</button></li>
+                <li><button className="toggle pill tags">{tags[2]}</button></li>
+                { tags[3] ? <li><button className="toggle pill tags">{tags[3]}</button></li> : null }
+                { tags[4] ? <li><button className="toggle pill tags">{tags[3]}</button></li> : null }
+                { tags[5] ? <li><button className="toggle pill tags">{tags[3]}</button></li> : null }
               </ul>
 
-            </p>
             </>
 
           ) : (null) }
