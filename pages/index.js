@@ -83,12 +83,17 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
           </div>
         </div>
       ) : (
+
+        <>
+
         <Card
         profile={randomProfile}
         addToLikes={addToLikes}
         addToDislikes={addToDislikes}
         toggleLikeStatus={toggleLikeStatus}
         layout="tinderStyle" />
+      </>
+
       )}
 
     </>

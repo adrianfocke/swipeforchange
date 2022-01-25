@@ -11,14 +11,14 @@
     "@contentful/rich-text-react-renderer": "^15.6.2",
     "axios": "^0.24.0",
     "contentful": "^9.1.5",
-    "next": "12.0.7",
+    "next": "^10.0.1",
     "react": "17.0.2",
-    "react-deck-swiper": "^1.0.9",
     "react-dom": "17.0.2",
+    "react-tinder-card": "^1.4.5",
     "sass": "^1.44.0"
   },
   "devDependencies": {
     "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7"
+    "eslint-config-next": "^0.2.4"
   }
 }
