@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Card from '../components/Card'
 import Image from 'next/image'
 import Link from 'next/link'
+import TinderCard from 'react-tinder-card'
 
 export async function getStaticProps() {
   const client = createClient({
@@ -40,7 +41,8 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
   }
 
   useEffect(() => {
-    grabRandomProfileFromProfiles();
+    console.log(likes);
+    console.log(dislikes);
   }, [likes, dislikes])
 
   const toggleVisibility = ({target}) => {
@@ -52,17 +54,25 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
     setDislikes([]);
   }
 
-  const handleOnSwipe = (swipeDirection) => {
-    if (swipeDirection === direction.RIGHT) {
-      addToLikesSwipe(randomProfile)
-      return;
-    }
+  const [lastDirection, setLastDirection] = useState(null)
 
-    if (swipeDirection === direction.LEFT) {
-      addToDislikesSwipe(randomProfile)
-      return;
+  const swiped = (direction) => {
+    if (direction === "left") {
+      console.log("LEFT");
+      // addToDislikesSwipe(randomProfile);
+    } else if (direction === "right") {
+      setLastDirection("right")
+      // addToLikesSwipe(randomProfile);
     }
   }
+
+  const outOfFrame = () => {
+    console.log(randomProfile)
+  }
+
+  useEffect(() => {
+    grabRandomProfileFromProfiles();
+  }, [likes, dislikes])
 
   return (
     <>
@@ -86,12 +96,14 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
 
         <>
 
-        <Card
-        profile={randomProfile}
-        addToLikes={addToLikes}
-        addToDislikes={addToDislikes}
-        toggleLikeStatus={toggleLikeStatus}
-        layout="tinderStyle" />
+        <TinderCard onSwipe={(dir) => swiped(dir)} onCardLeftScreen={() => outOfFrame()} preventSwipe={['up', 'down']}>
+          <Card
+          profile={randomProfile}
+          addToLikes={addToLikes}
+          addToDislikes={addToDislikes}
+          toggleLikeStatus={toggleLikeStatus}
+          layout="tinderStyle" />
+        </TinderCard>
       </>
 
       )}

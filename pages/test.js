@@ -7,15 +7,6 @@ const db = [
   },
   {
     name: 'Erlich Bachman'
-  },
-  {
-    name: 'Monica Hall'
-  },
-  {
-    name: 'Jared Dunn'
-  },
-  {
-    name: 'Dinesh Chugtai'
   }
 ]
 
