@@ -19,6 +19,12 @@ export async function getStaticProps() {
 
 const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeStatus, setLikes, setDislikes}) => {
 
+  // test
+  const [myLikes, setMyLikes] = useState(new Set())
+  const addFoo = (foo) =>{
+    setMyLikes(prev => new Set(prev.add(foo)))
+  }
+
   const [randomProfile, setRandomProfile] = useState(undefined);
 
   const addToLikesSwipe = (profile) => { setLikes(prev =>  [...prev, profile.fields.uniqueKey]); }
@@ -59,20 +65,30 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
   const swiped = (direction) => {
     if (direction === "left") {
       console.log("LEFT");
-      // addToDislikesSwipe(randomProfile);
+      console.log(randomProfile.fields.uniqueKey);
+      addToDislikesSwipe(randomProfile);
+      addFoo(randomProfile.fields.uniqueKey);
+      console.log(myLikes);
     } else if (direction === "right") {
       setLastDirection("right")
-      // addToLikesSwipe(randomProfile);
+      addToLikesSwipe(randomProfile);
     }
   }
 
   const outOfFrame = () => {
-    console.log(randomProfile)
+    setRandomProfile(undefined);
+    grabRandomProfileFromProfiles();
   }
 
   useEffect(() => {
     grabRandomProfileFromProfiles();
   }, [likes, dislikes])
+
+  // profiles.forEach((item, i) => {
+  //   console.log(item);
+  // });
+
+  console.log(myLikes);
 
   return (
     <>

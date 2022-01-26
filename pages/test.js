@@ -10,7 +10,9 @@ const db = [
   }
 ]
 
-function Simple () {
+const Simple = ({profiles}) => {
+
+
   const characters = db
   const [lastDirection, setLastDirection] = useState()
 

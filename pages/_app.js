@@ -8,6 +8,16 @@ const MyApp = ({ Component, pageProps }) => {
   const [likes, setLikes] = useState([]);
   const [dislikes, setDislikes] = useState([]);
 
+  // const [myLikes, setMyLikes] = useState(new Set())
+  // const addToMyLikes = (foo) =>{
+  //   setMyLikes(prev => new Set(prev.add(foo)))
+  // }
+  // const removeFromMyLikes = foo =>{
+  //   setMyLikes(prev =>{
+  //       return prev.filter(x => x !== foo)
+  //   })
+  // }
+
   const addToLikes = ({target}) => { setLikes(prev =>  [...prev, target.value]); }
   const addToDislikes = ({target}) => { setDislikes(prev =>  [...prev, target.value]); }
   const removeFromLikes = ({target}) => { setLikes(arr => arr.filter(el => el !== target.value)); }
