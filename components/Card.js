@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 
-const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layout}) => {
+const Card = ({profile, myLikes, myDislikes, addToSet, removeFromSet, like, dislike, likes, addToLikes, addToDislikes, layout}) => {
   const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   const [shownImage, setShownImage] = useState("firstImage")
@@ -18,6 +18,35 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
     }
   }
 
+  const toggleLike = ({target}) => {
+    const item = target.value
+
+    console.log(myDisLikes);
+
+    if (myLikes.has(item)) {
+      removeFromSet(myLikes, item)
+      dislike({target})
+    } else if (myDislikes.has(item)) {
+      removeFromSet(myDisLikes, item)
+      like({target})
+    } else {
+      like({target})
+    }
+
+  }
+
+
+  const toggleLikeStatus = ({target}) => {
+    if (likes.includes(target.value)) {
+      removeFromLikes({target})
+      addToDislikes({target})
+    } else if (dislikes.includes(target.value)) {
+      removeFromDislikes({target})
+      addToLikes({target})
+    } else {
+      addToLikes({target})
+    }
+  }
 
   return(
     <div className="card margin-bottom-double">
@@ -65,23 +94,23 @@ const Card = ({profile, likes, toggleLikeStatus, addToLikes, addToDislikes, layo
         { layout === "cardStyle" ? (
           <p className="paragraph padding-bottom padding-top">
             <Link href={`/profile/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-            <button className="toggle pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
+            <button className="toggle pill margin-horizontal" onClick={toggleLike} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
           </p>
         ) : (null) }
 
         { layout === "likeStyle" ? (
           <p className="paragraph padding-bottom padding-top">
             <Link href={`/profile/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-            <button className="pill margin-horizontal" onClick={toggleLikeStatus} value={uniqueKey}>Löschen</button>
+            <button className="pill margin-horizontal" onClick={toggleLike} value={uniqueKey}>Löschen</button>
           </p>
         ) : (null) }
 
         { layout === "tinderStyle" ? (
 
           <p className="paragraph cardActionPunchline">
-            <button className="pill" onClick={addToDislikes} value={uniqueKey}>Nope ✗</button>
+            <button className="pill" onClick={dislike} value={uniqueKey}>Nope ✗</button>
             <Link href={`/profile/${uniqueKey}`}><a className="margin-horizontal" alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-            <button className="pill" onClick={addToLikes} value={uniqueKey}>Like ♡</button>
+            <button className="pill" onClick={like} value={uniqueKey}>Like ♡</button>
           </p>
 
         ) : (null) }

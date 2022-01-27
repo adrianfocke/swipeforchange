@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Menu = ({likes}) => {
+const Menu = ({myLikes}) => {
   return(
     <nav className="flexbox margin-top margin-bottom">
       <Link href="/"><a title="Back to home">Activie</a></Link>

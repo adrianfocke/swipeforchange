@@ -14,7 +14,7 @@ export async function getStaticProps() {
   }
 }
 
-const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle }) => {
+const ProfilesList = ({profiles, myLikes, myDisLikes, like, dislike, addToSet, removeFromSet, likes, dislikes, toggleLikeStatus, toggleStyle }) => {
 
   // const filteredItems = new Set();
   //
@@ -214,6 +214,13 @@ const ProfilesList = ({profiles, likes, dislikes, toggleLikeStatus, toggleStyle 
 
       { filteredProfiles.map((profile, id) => (
       <Card
+        myLikes={myLikes}
+        myDisLikes={myDisLikes}
+        addToSet={addToSet}
+        removeFromSet={removeFromSet}
+
+        like={like}
+        dislike={dislike}
         likes={likes}
         profile={profile}
         toggleLikeStatus={toggleLikeStatus}

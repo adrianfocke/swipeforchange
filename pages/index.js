@@ -17,78 +17,81 @@ export async function getStaticProps() {
   }
 }
 
-const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeStatus, setLikes, setDislikes}) => {
+const Home = ({ myLikes, myDislikes, addToSet, removeFromSet, like, dislike, profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeStatus, setLikes, setDislikes}) => {
 
-  // test
-  const [myLikes, setMyLikes] = useState(new Set())
-  const addFoo = (foo) =>{
-    setMyLikes(prev => new Set(prev.add(foo)))
-  }
+
+  // const addToLikesSwipe = (profile) => { setLikes(prev =>  [...prev, profile.fields.uniqueKey]); }
+  // const addToDislikesSwipe = (profile) => { setDislikes(prev =>  [...prev, profile.fields.uniqueKey]); }
+  //
+  // const grabRandomProfileFromProfiles = () => {
+  //   const randomIndex = profiles[Math.floor(Math.random() * profiles.length)]
+  //
+  //   try {
+  //     if (!(likes.includes(randomIndex.fields.uniqueKey)) && !(dislikes.includes(randomIndex.fields.uniqueKey))) {
+  //         setRandomProfile(randomIndex)
+  //       } else if (likes.length === profiles.length) {
+  //         setRandomProfile(undefined);
+  //       } else {
+  //         grabRandomProfileFromProfiles()
+  //       }
+  //   } catch (e) {
+  //       emptyDislikes()
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   console.log(likes);
+  //   console.log(dislikes);
+  // }, [likes, dislikes])
+
+
+  // const emptyDislikes = () => {
+  //   setDislikes([]);
+  // }
 
   const [randomProfile, setRandomProfile] = useState(undefined);
 
-  const addToLikesSwipe = (profile) => { setLikes(prev =>  [...prev, profile.fields.uniqueKey]); }
-  const addToDislikesSwipe = (profile) => { setDislikes(prev =>  [...prev, profile.fields.uniqueKey]); }
-
-  const grabRandomProfileFromProfiles = () => {
-    const randomIndex = profiles[Math.floor(Math.random() * profiles.length)]
-
+  const getRandomProfile = () => {
+    const randomIndex = profiles[Math.floor(Math.random() * profiles.length)];
+    const randomIndexUniqueKey = randomIndex.fields.uniqueKey;
     try {
-      if (!(likes.includes(randomIndex.fields.uniqueKey)) && !(dislikes.includes(randomIndex.fields.uniqueKey))) {
-          setRandomProfile(randomIndex)
-        } else if (likes.length === profiles.length) {
-          setRandomProfile(undefined);
-        } else {
-          grabRandomProfileFromProfiles()
-        }
+      !(myLikes.has(randomIndexUniqueKey) || myDislikes.has(randomIndexUniqueKey))  ? setRandomProfile(randomIndex) : getRandomProfile();
     } catch (e) {
-        emptyDislikes()
+      console.log(e);
+      myDislikes.size ? myDislikes.clear() : console.log("No more dislikes!");
     }
+
   }
 
   useEffect(() => {
-    console.log(likes);
-    console.log(dislikes);
-  }, [likes, dislikes])
+    getRandomProfile();
+  }, [myLikes, myDislikes])
 
-  const toggleVisibility = ({target}) => {
-    const changeThis = document.getElementById("info");
-    !target.className.includes("hidden") ? changeThis.className += " hidden" : changeThis.className = changeThis.className.replace(" hidden", "");
-  }
 
-  const emptyDislikes = () => {
-    setDislikes([]);
-  }
 
   const [lastDirection, setLastDirection] = useState(null)
 
   const swiped = (direction) => {
     if (direction === "left") {
-      console.log("LEFT");
-      console.log(randomProfile.fields.uniqueKey);
-      addToDislikesSwipe(randomProfile);
-      addFoo(randomProfile.fields.uniqueKey);
-      console.log(myLikes);
+      addToSet(myDislikes, randomProfile.fields.uniqueKey);
     } else if (direction === "right") {
-      setLastDirection("right")
-      addToLikesSwipe(randomProfile);
+      addToSet(myLikes, randomProfile.fields.uniqueKey);
     }
   }
 
   const outOfFrame = () => {
     setRandomProfile(undefined);
-    grabRandomProfileFromProfiles();
+    getRandomProfile();
   }
 
-  useEffect(() => {
-    grabRandomProfileFromProfiles();
-  }, [likes, dislikes])
+  // useEffect(() => {
+  //   grabRandomProfileFromProfiles();
+  // }, [likes, dislikes])
 
   // profiles.forEach((item, i) => {
   //   console.log(item);
   // });
 
-  console.log(myLikes);
 
   return (
     <>
@@ -118,6 +121,8 @@ const Home = ({profiles, likes, dislikes, addToLikes, addToDislikes, toggleLikeS
           addToLikes={addToLikes}
           addToDislikes={addToDislikes}
           toggleLikeStatus={toggleLikeStatus}
+          like={like}
+          dislike={dislike}
           layout="tinderStyle" />
         </TinderCard>
       </>

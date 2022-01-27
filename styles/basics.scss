@@ -209,11 +209,11 @@ nav {
   height: 25vh;
 }
 
-@media screen and (orientation: portrait) {
-  .cardHeader {
-    height: 25vh;
-  }
-}
+// @media screen and (orientation: portrait) {
+//   .cardHeader {
+//     height: 25vh;
+//   }
+// }
 
 .cardHeader:first-child img {
   border-top-left-radius: $margin-tiny;

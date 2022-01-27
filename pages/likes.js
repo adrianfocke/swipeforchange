@@ -15,9 +15,9 @@ export async function getStaticProps() {
   }
 }
 
-const Likes = ({profiles, likes, toggleLikeStatus }) => {
+const Likes = ({profiles, myLikes, likes, toggleLikeStatus }) => {
 
-  if (likes.length === 0) {
+  if (!myLikes.size) {
     return (<div className="card margin-bottom-double">
 
       <div className="cardHeader cardHeader-small">
@@ -40,8 +40,11 @@ const Likes = ({profiles, likes, toggleLikeStatus }) => {
 
 
     <div>
-      { profiles.filter(item => likes.includes(item.fields.uniqueKey)).map((profile, id) => (
+      { profiles.filter(item => myLikes.has(item.fields.uniqueKey)).map((profile, id) => (
       <Card
+      myLikes={myLikes}
+      like={like}
+      dislike={dislike}
       likes={likes}
       profile={profile}
       toggleLikeStatus={toggleLikeStatus}

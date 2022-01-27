@@ -5,19 +5,36 @@ import '../styles/basics.scss'
 
 const MyApp = ({ Component, pageProps }) => {
 
+  const [myLikes, setMyLikes] = useState(new Set())
+  const [myDislikes, setMyDislikes] = useState(new Set())
+
+  const addToSet = (set, item) => {
+    if (set === myLikes) { setMyLikes(prev => new Set(prev.add(item))) }
+    else if (set === myDislikes) { setMyDislikes(prev => new Set(prev.add(item))) }
+  }
+  const removeFromSet = (set, item) => {
+    if (set === myLikes) { setMyLikes(prev =>{ return prev.filter(x => x !== item) }) }
+    else if (set === myDislikes) { setMyDislikes(prev =>{ return prev.filter(x => x !== item) }) }
+  }
+
+  const like = ({target}) => {
+    const item = target.value;
+    addToSet(myLikes, item);
+  }
+  const dislike = ({target}) => {
+    const item = target.value;
+    addToSet(myDislikes, item);
+  }
+
+  useEffect(() => {
+    console.log(myLikes);
+    console.log(myDislikes);
+  }, [myLikes, myDislikes])
+
+
+
   const [likes, setLikes] = useState([]);
   const [dislikes, setDislikes] = useState([]);
-
-  // const [myLikes, setMyLikes] = useState(new Set())
-  // const addToMyLikes = (foo) =>{
-  //   setMyLikes(prev => new Set(prev.add(foo)))
-  // }
-  // const removeFromMyLikes = foo =>{
-  //   setMyLikes(prev =>{
-  //       return prev.filter(x => x !== foo)
-  //   })
-  // }
-
   const addToLikes = ({target}) => { setLikes(prev =>  [...prev, target.value]); }
   const addToDislikes = ({target}) => { setDislikes(prev =>  [...prev, target.value]); }
   const removeFromLikes = ({target}) => { setLikes(arr => arr.filter(el => el !== target.value)); }
@@ -45,6 +62,13 @@ const MyApp = ({ Component, pageProps }) => {
       <Layout likes={likes}>
         <Head><title>Swipe for Change!</title></Head>
         <Component {...pageProps}
+        myLikes={myLikes}
+        myDislikes={myDislikes}
+        addToSet={addToSet}
+        removeFromSet={removeFromSet}
+        like={like}
+        dislike={dislike}
+
         likes={likes}
         dislikes={dislikes}
         addToLikes={addToLikes}
