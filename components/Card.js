@@ -94,7 +94,9 @@ const Card = ({profile, myLikes, myDislikes, addToSet, removeFromSet, like, disl
         { layout === "cardStyle" ? (
           <p className="paragraph padding-bottom padding-top">
             <Link href={`/profile/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-            <button className="toggle pill margin-horizontal" onClick={toggleLike} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
+            {
+              // <button className="toggle pill margin-horizontal" onClick={toggleLike} value={uniqueKey}>Liken<span className={`padding-left-half ${likes.includes(uniqueKey) ? "text-black" : "grey"}`}>●</span></button>
+            }
           </p>
         ) : (null) }
 
