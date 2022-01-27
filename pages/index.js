@@ -57,7 +57,6 @@ const Home = ({ myLikes, myDislikes, addToSet, removeFromSet, like, dislike, pro
     try {
       !(myLikes.has(randomIndexUniqueKey) || myDislikes.has(randomIndexUniqueKey))  ? setRandomProfile(randomIndex) : getRandomProfile();
     } catch (e) {
-      console.log(e);
       myDislikes.size ? myDislikes.clear() : console.log("No more dislikes!");
     }
 

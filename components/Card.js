@@ -101,7 +101,7 @@ const Card = ({profile, myLikes, myDislikes, addToSet, removeFromSet, like, disl
         { layout === "likeStyle" ? (
           <p className="paragraph padding-bottom padding-top">
             <Link href={`/profile/${uniqueKey}`}><a alt={`Link to ${name} profile page`}>Mehr Info</a></Link>
-            <button className="pill margin-horizontal" onClick={toggleLike} value={uniqueKey}>Löschen</button>
+            <button className="pill margin-horizontal" onClick={dislike} value={uniqueKey}>Löschen</button>
           </p>
         ) : (null) }
 

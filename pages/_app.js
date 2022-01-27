@@ -19,10 +19,16 @@ const MyApp = ({ Component, pageProps }) => {
 
   const like = ({target}) => {
     const item = target.value;
+    if (myDislikes.has(item)) {
+      myDislikes.delete(item);
+    }
     addToSet(myLikes, item);
   }
   const dislike = ({target}) => {
     const item = target.value;
+    if (myLikes.has(item)) {
+      myLikes.delete(item);
+    }
     addToSet(myDislikes, item);
   }
 
