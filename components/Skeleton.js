@@ -2,7 +2,7 @@ const Skeleton = () => {
   return(
     <div className="card">
       <div className="cardContent">
-        <h4>Still loading</h4>
+        <h4>Lädt...</h4>
       </div>
     </div>
   )

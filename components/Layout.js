@@ -1,6 +1,6 @@
 import Menu from './Menu'
 
-const Layout = ({ children, likes }) => {
+const Layout = ({ children }) => {
   return(
     <div id="container">
       <Menu />

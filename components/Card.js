@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 
-const Card = ({profile, myLikes, myDislikes, addToSet, removeFromSet, like, dislike, likes, addToLikes, addToDislikes, layout}) => {
+const Card = ({profile, myLikes, myDislikes, addToSet, removeFromSet, like, dislike, layout}) => {
   const { uniqueKey, name, location, slogan, about, goals, tags, firstImage, secondImage, thirdImage, fourthImage, longDescription, contactName, contactStatement, contactImage, events, contactNumber,  contactEmail, contactLink} = profile.fields
 
   const [shownImage, setShownImage] = useState("firstImage")
